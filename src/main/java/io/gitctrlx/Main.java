@@ -8,24 +8,25 @@ import io.gitctrlx.service.TTSService;
 public class Main {
     public static void main(String[] args) {
         TTSService ts = new TTSService();
-//        ts.setBaseSavePath("d:\\"); // 设置保存路径
+
         SSML ssml = SSML.builder()
                 .outputFormat(OutputFormat.audio_24khz_48kbitrate_mono_mp3)
-                .synthesisText("你好")
-                .outputFileName("你好")
+                .synthesisText("Test Text")
+                .outputFile("C:\\hello_test") // File Path, e.g "C:\\hello_test", it will save hello_test.mp3 at C:\\
                 .voice(VoiceEnum.zh_CN_XiaoxiaoNeural)
                 .build();
+
         new Thread(() -> {
             ts.sendText(ssml, new TTSService.TTSCallback() {
                 @Override
                 public void onSuccess(String filePath) {
-                    // 播放音频
+                    // When the request is successful, do whatever you want to do here
                     System.out.println(filePath);
                 }
 
                 @Override
                 public void onError(Exception e) {
-                    // 输出错误信息
+                    // When an error occurs, you can handle it here
                     e.printStackTrace();
                 }
             });

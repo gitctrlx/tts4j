@@ -214,7 +214,7 @@ public class SSML implements Serializable {
          * @param outputFileName 输出文件名 The output file name.
          * @return SSMLBuilder实例 An instance of SSMLBuilder.
          */
-        public SSMLBuilder outputFileName(String outputFileName) {
+        public SSMLBuilder outputFile(String outputFileName) {
             this.outputFileName = outputFileName;
             return this;
         }

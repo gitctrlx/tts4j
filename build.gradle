@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+}
+
+group = 'io.gitctrlx'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven {
+        name = "tts4j"
+        url = uri("https://maven.pkg.github.com/gitctrlx/tts4j")
+        credentials {
+            username = System.getenv("GITHUB_ACTOR")
+            password = System.getenv("GITHUB_TOKEN")
+        }
+    }
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    implementation 'com.squareup.okhttp3:okhttp:4.12.0'
+    implementation 'org.slf4j:slf4j-api:2.0.7'
+}
+
+test {
+    useJUnitPlatform()
+}
